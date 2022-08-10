@@ -20,6 +20,6 @@ job.with {
 
 job.with {
     steps {
-        shell 'echo test'
+        shell 'echo test linh dep trai'
     }
 }
