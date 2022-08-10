@@ -1,17 +1,8 @@
 timestamps {
     node {
-        stage('Checkout') {
-            checkout scm
-        }
-
-        stage('Test') {
-            sh './gradlew test'
-        }
-
-        if (BRANCH_NAME == 'master') {
+        if (BRANCH_NAME == 'local') {
             stage('Build') {
-                jobDsl(additionalClasspath: 'src/main/groovy', removedJobAction: 'DELETE', removedViewAction: 'DELETE',
-                        targets: 'jobs/jobs.groovy', unstableOnDeprecation: true)
+                jobDsl(additionalClasspath: 'src/main/groovy', removedJobAction: 'DELETE', removedViewAction: 'DELETE', targets: "jobs/*.groovy", unstableOnDeprecation: true)
             }
         }
     }
