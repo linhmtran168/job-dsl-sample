@@ -23,3 +23,23 @@ job.with {
         shell 'echo test linh dep trai'
     }
 }
+
+job.with {
+    publishers {
+        slackNotifier {
+            room('Dev Team A')
+            notifyAborted(true)
+            notifyFailure(true)
+            notifyNotBuilt(true)
+            notifyUnstable(true)
+            notifyBackToNormal(true)
+            notifySuccess(false)
+            notifyRepeatedFailure(false)
+            startNotification(false)
+            includeTestSummary(false)
+            includeCustomMessage(false)
+            commitInfoChoice('NONE')
+            tokenCredentialId('slack-token')
+        }
+    }
+}
