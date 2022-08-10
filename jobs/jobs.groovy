@@ -1,6 +1,3 @@
-import static io.unguiculus.jobdsl.JobUtils.addDefaults
-import static io.unguiculus.jobdsl.JobUtils.addTimestampsWrapper
-
 folderName = 'myjobs'
 
 folder(folderName) {
@@ -8,8 +5,18 @@ folder(folderName) {
 }
 
 job = freeStyleJob("$folderName/test-job")
-addDefaults(job)
-addTimestampsWrapper(job)
+job.with {
+    description('<em style="color: red;">GENERATED JOB - MANUAL CHANGES WILL BE OVERWRITTEN</em>')
+    wrappers {
+        colorizeOutput()
+    }
+}
+
+job.with {
+    logRotator {
+        numToKeep(30)
+    }
+}
 
 job.with {
     steps {

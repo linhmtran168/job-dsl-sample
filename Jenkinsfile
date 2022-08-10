@@ -6,7 +6,7 @@ timestamps {
 
         if (BRANCH_NAME == 'local') {
             stage('Build') {
-                jobDsl(additionalClasspath: 'src/main/groovy', removedJobAction: 'DELETE', removedViewAction: 'DELETE',
+                jobDsl(removedJobAction: 'DELETE', removedViewAction: 'DELETE', sandbox: true
                 targets: 'jobs/**/*.groovy', unstableOnDeprecation: true)
             }
         }
